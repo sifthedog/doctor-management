@@ -1,0 +1,54 @@
+<% flash.each do |type, msg| %>
+  <% if type == "alert" %>
+      <div class="alert alert-danger text-center">
+  <% else %>
+      <div class="alert alert-success text-center">
+  <% end %>
+  <%= msg %>
+  </div>
+<% end %>
+
+<div class='container'>
+  <div class="d-flex flex-row justify-content-between m-3">
+    <%= link_to "<i class=\"fas fa-hospital-user mr-3\"></i>Cadastrar novo paciente".html_safe, new_patient_path, :method => :get, :class => "btn btn-primary rounded-lg btn-lg px-5" %>
+  </div>
+
+  <h2>
+    Pacientes cadastrados:
+  </h2>
+    <table class="table">
+      <thead >
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>Data de nascimento</th>
+          <th>CPF</th>
+          <th>Médico responsável</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @patients.each do |patient| %>
+          <tr>
+            <td>
+              <%= link_to "<i class=\"far fa-edit\"></i>".html_safe, patient, method: :get, :class => "text-primary mr-1" %>
+              <%= link_to "<i class=\"fas fa-trash-alt\"></i>".html_safe, patient, method: :delete, :class => "text-danger ml-1" %>
+            </td>
+            <td>
+              <%= patient.name %>
+            </td>
+            <td>
+              <%= patient.birth_date %>
+            </td>
+            <td>
+              <%= patient.get_cpf %>
+            </td>
+            <td>
+              <%= patient.doctor.name %>
+            </td>
+          </tr>
+        <% end %>   
+      </tbody>
+    </table>
+
+</div>
