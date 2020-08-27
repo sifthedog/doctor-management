@@ -13,7 +13,7 @@ class DoctorsController < ApplicationController
     result = UpdateDoctor.call(doctor_params: doctor_params, id: params[:id])
 
     if result.success?
-      redirect_to root_path, notice: 'Médico editado com sucesso!'
+      redirect_to doctors_path, notice: 'Médico editado com sucesso!'
     else
       redirect_to :doctor, alert: 'Já existe um médico cadastrado com este CRM.'
     end
@@ -23,7 +23,7 @@ class DoctorsController < ApplicationController
     result = CreateDoctor.call(doctor_params: doctor_params)
 
     if result.success?
-      redirect_to root_path, notice: 'Médico criado com sucesso!'
+      redirect_to doctors_path, notice: 'Médico criado com sucesso!'
     else
       redirect_to new_doctor_path, alert: 'Já existe um médico cadastrado com este CRM.'
     end
@@ -33,9 +33,9 @@ class DoctorsController < ApplicationController
     result = DeleteDoctor.call(id: params[:id])
 
     if result.success?
-      redirect_to root_path, notice: 'Médico removido com sucesso!'
+      redirect_to doctors_path, notice: 'Médico removido com sucesso!'
     else
-      redirect_to root_path, alert: result.error
+      redirect_to doctors_path, alert: result.error
     end
   end
 
