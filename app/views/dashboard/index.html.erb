@@ -5,7 +5,7 @@
 
   <div class="card__border p-3">
     <div class="input-group">
-      <%= form_tag('', method: :get) do %>
+      <%= form_tag('', method: :get, class: 'flex-fill') do %>
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Médico:</span>
           <%= select_tag(
@@ -14,7 +14,7 @@
                 @doctors.map {|doctor| [doctor.name, doctor.id]}
               ), 
               include_blank: 'Todos os médicos', 
-              class: "card__select"
+              class: "form-control"
             ) 
           %>
         </div>
