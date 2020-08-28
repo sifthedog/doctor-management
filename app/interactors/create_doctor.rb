@@ -4,7 +4,6 @@ class CreateDoctor
   include Interactor
 
   def call
-    Rails.logger.info context.doctor_params
     doctor = Doctor.create(context.doctor_params)
 
     if doctor.valid?

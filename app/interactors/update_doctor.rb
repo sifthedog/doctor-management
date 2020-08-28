@@ -11,4 +11,4 @@ class UpdateDoctor
       context.fail!(errors: doctor.errors.messages)
     end
   end
-endd
+end

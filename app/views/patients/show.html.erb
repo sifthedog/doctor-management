@@ -9,7 +9,7 @@
 <% end %>
 
 <div class='container'>
-  <%= form_with scope: :patient, url: patients_path, local: true do |form| %>
+  <%= form_with scope: :patient, url: patient_path, method: "put", local: true do |form| %>
     <div class="card mt-5">
       <h3 class="card__border p-3">
         Dados do Paciente:
@@ -23,16 +23,16 @@
           <%= form.text_field :name, :class => "form-control", placeholder: "Nome do paciente (ex: João)", required: true %>
         </div>
       </div>
-      <div class="card__flex p-3">
-        <div class="input-group mr-2 w-75">
+      <div class="card__flex card__border p-3">
+        <div class="input-group mr-2">
           <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">CPF:</span>
+            <span class="input-group-text" id="basic-addon1">CPF:</span>
           </div>
-          <%= form.text_field :cpf, :class => "form-control", placeholder: "Número do CPF (sem pontos)", required: true %>
+          <%= form.text_field :cpf, :class => "form-control", placeholder: "Número do CRM", required: true %>
         </div>
         <div class="input-group ml-2">
           <div class="input-group-prepend flex-fill">
-            <span class="input-group-text" id="basic-addon1">Data de nascimento:</span>
+            <span class="input-group-text" id="basic-addon1">Data de Nascimento:</span>
             <%= 
               form.date_select :birth_date, 
               {
@@ -58,7 +58,7 @@
         %>
       </div>
       <div class="d-flex flex-row-reverse p-3">
-        <%= form.submit "Cadastrar Paciente", :class => "btn btn-primary" %>
+        <%= form.submit "Atualizar paciente", :class => "btn btn-primary" %>
         <%= link_to "Voltar", patients_path, :method => :get, :class => "btn mr-3" %>
       </div>
     </div>

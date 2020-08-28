@@ -9,6 +9,21 @@ class PatientsController < ApplicationController
     @doctors = Doctor.all
   end
 
+  def show
+    @patient = Patient.find(params[:id])
+    @doctors = Doctor.all
+  end
+
+  def update
+    result = UpdatePatient.call(patient_params: patient_params, patient_id: params[:id])
+
+    if result.success?
+      redirect_to patients_path, notice: 'Paciente atualizado com sucesso!'
+    else
+      redirect_to patient_path, alert: result.error
+    end
+  end
+
   def create
     result = CreatePatient.call(patient_params: patient_params)
 
