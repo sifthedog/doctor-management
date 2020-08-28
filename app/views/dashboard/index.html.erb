@@ -9,7 +9,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Médico:</span>
           <%= select_tag(
-              'doctor', 
+              'doctor_id', 
               options_for_select(
                 @doctors.map {|doctor| [doctor.name, doctor.id]}
               ), 

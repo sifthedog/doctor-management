@@ -11,9 +11,10 @@ class CreateAppointment
       doctor_id: context.appointment.doctor_id,
       patient_id: context.appointment.patient_id
     )
-    context.fail!(error: 
-      check_appointment_availability.error
-    ) unless check_appointment_availability.success?
+    unless check_appointment_availability.success?
+      context.fail!(error:
+        check_appointment_availability.error)
+    end
   end
 
   def call

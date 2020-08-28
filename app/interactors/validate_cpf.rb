@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class ValidateCpf
   include Interactor
-  
+
   def call
     context.fail!(error: 'CPF inválido.') if invalid_cpf?(context.cpf)
   end
-  
+
   def invalid_cpf?(cpf)
     (
       cpf.size != 11 ||
