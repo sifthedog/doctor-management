@@ -40,7 +40,7 @@
               <%= appointment.doctor.name %>
             </td>
             <td>
-              <%= appointment.starts_at.to_s[0..-4] %>
+              <%= appointment.starts_at.in_time_zone('America/Sao_Paulo').to_s[0..-6] %>
             </td>
           </tr>
         <% end %>   

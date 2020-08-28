@@ -36,6 +36,11 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
   end
 
+  def update
+    result = UpdateAppointment.call(appointments_params: appointments_params, id: params[:id])
+  end
+  
+
   private
 
   def appointments_params
