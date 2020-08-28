@@ -1,0 +1,46 @@
+<% flash.each do |type, msg| %>
+  <% if type == "alert" %>
+      <div class="alert alert-danger text-center">
+  <% else %>
+      <div class="alert alert-success text-center">
+  <% end %>
+  <%= msg %>
+  </div>
+<% end %>
+
+<div class='container'>
+    <%= form_with scope: :doctor, url: doctor_path, method: "put", local: true do |form| %>
+        <div class="card mt-5">
+            <h3 class="card__border p-2">
+                Dados do Médico:
+            </h3>
+
+            <div class="card__flex p-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Nome:</span>
+                    </div>
+                    <%= form.text_field :name, :class => "form-control", placeholder: "Nome do médico (ex: João)" %>
+                </div>
+            </div>
+            <div class="card__flex card__border p-3">
+                <div class="input-group mr-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">CRM:</span>
+                    </div>
+                    <%= form.text_field :crm, :class => "form-control", placeholder: "Número do CRM" %>
+                </div>
+                <div class="input-group ml-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">CRM UF:</span>
+                    </div>
+                    <%= form.text_field :crm_uf, :class => "form-control", placeholder: "UF do CRM" %>
+                </div>
+            </div>
+            <div class="d-flex flex-row-reverse p-3">
+                <%= form.submit "Atualizar Médico", :class => "btn btn-primary" %>
+                <%= link_to "Voltar", doctors_path, :method => :get, :class => "btn mr-3" %>
+            </div>
+        </div>
+    <% end %>
+</div>

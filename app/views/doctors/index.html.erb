@@ -1,0 +1,44 @@
+<% flash.each do |type, msg| %>
+  <% if type == "alert" %>
+      <div class="alert alert-danger text-center">
+  <% else %>
+      <div class="alert alert-success text-center">
+  <% end %>
+  <%= msg %>
+  </div>
+<% end %>
+
+<div class='container'>
+  <div class="d-flex flex-row justify-content-between m-3">
+    <%= link_to "<i class=\"fas fa-user-md mr-3\"></i>Cadastrar novo médico".html_safe, new_doctor_path, :method => :get, :class => "btn btn-primary rounded-lg btn-lg px-5" %>
+  </div>
+
+  <h2>
+    Médicos cadastrados:
+  </h2>
+    <table class="table">
+      <thead >
+        <tr>
+          <th></th>
+          <th class="text-align-center">Nome</th>
+          <th>CRM</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @doctors.each do |doctor| %>
+          <tr>
+            <td>
+              <%= link_to "<i class=\"far fa-edit\"></i>".html_safe, doctor, method: :get, :class => "text-primary mr-1" %>
+              <%= link_to "<i class=\"fas fa-trash-alt\"></i>".html_safe, doctor, method: :delete, :class => "text-danger ml-1" %>
+            </td>
+            <td>
+              <%= doctor.name %>
+            </td>
+            <td><%= doctor.crm + " - " + doctor.crm_uf %></td>
+          </tr>
+        <% end %>   
+      </tbody>
+    </table>
+
+</div>

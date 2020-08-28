@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Error
   module ErrorHandler
     def self.included(clazz)
@@ -7,6 +9,7 @@ module Error
     end
 
     private
+
     def record_not_found(_e)
       redirect_to root_path, alert: 'Registro não encontrado.'
     end

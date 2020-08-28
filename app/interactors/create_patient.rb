@@ -6,26 +6,24 @@ class CreatePatient
   before do
     cpf = context.patient_params[:cpf]
 
-    context.fail!(error: "CPF inválido.") if invalid_cpf?(cpf)
+    context.fail!(error: 'CPF inválido.') if invalid_cpf?(cpf)
   end
 
   def call
     patient = Patient.create(context.patient_params)
 
-    if !patient.valid?
-      context.fail!(error: "Já existe um paciente com este CPF.")
-    end
+    context.fail!(error: 'Já existe um paciente com este CPF.') unless patient.valid?
   end
 
   def invalid_cpf?(cpf)
     (
-      cpf.size != 11 || 
+      cpf.size != 11 ||
       !cpf.scan(/\D/).empty? ||
-      get_validation_remainder(cpf[0..8]) != cpf[-2].to_i || 
+      get_validation_remainder(cpf[0..8]) != cpf[-2].to_i ||
       get_validation_remainder(cpf[0..9]) != cpf[-1].to_i
     )
   end
-  
+
   def get_validation_remainder(numbers)
     mod = numbers.size + 1
 
