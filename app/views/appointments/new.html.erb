@@ -1,0 +1,83 @@
+<% flash.each do |type, msg| %>
+  <% if type == "alert" %>
+      <div class="alert alert-danger text-center">
+  <% else %>
+      <div class="alert alert-success text-center">
+  <% end %>
+  <%= msg %>
+  </div>
+<% end %>
+
+<div class='container'>
+    <%= form_with scope: :patient, url: patients_path, local: true do |form| %>
+        <div class="card mt-5">
+            <h3 class="card__border p-3">
+              Agendamento de Consulta:
+            </h3>
+
+            <div class="d-flex p-3">
+              <div class="input-group">
+                <%= form_tag('', method: :get) do %>
+                  <div class="input-group-prepend flex-fill mr-2">
+                    <span class="input-group-text" id="basic-addon1">Médico:</span>
+                    <%= select_tag(
+                        'doctor_id', 
+                        options_for_select(
+                          @doctors.map {|doctor| [doctor.name, doctor.id]}
+                        ), 
+                        class: "form-control"
+                      ) 
+                    %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="input-group">
+                <%= form_tag('', method: :get, class: 'flex-fill') do %>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Paciente:</span>
+                  <%= select_tag(
+                    'patient_id', 
+                    options_for_select(
+                      @patients.map {|patient| [patient.name, patient.id]}
+                    ), 
+                    class: "form-control"
+                  ) 
+                  %>
+                </div>
+              <% end %>
+            </div> 
+          </div>
+          <div class="card__flex p-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text form-control" id="basic-addon1">Data:</span>
+              <%= form.date_select :birth_date, 
+                {
+                  start_year: Date.today.year, 
+                  end_year: (Date.today + 1.year).year, 
+                  order: [:day, :month, :year]
+                }, 
+                {
+                  class: "form-control"
+                } 
+              %>
+            </div>
+          </div>
+        </div>
+        <div class="card__border card__flex p-3">
+          <span class="input-group-text" id="basic-addon1">Horário:</span>
+          <%= select_tag(
+            'doctor_id', 
+            options_for_select(
+              @doctors.map {|doctor| [doctor.name, doctor.id]}
+            ), 
+            class: "form-control") 
+          %>
+        </div>
+        <div class="d-flex flex-row-reverse p-3">
+          <%= form.submit "Agendar Consulta", :class => "btn btn-primary" %>
+          <%= link_to "Voltar", appointments_path, :method => :get, :class => "btn mr-3" %>
+        </div>
+      </div>
+    <% end %>
+</div>

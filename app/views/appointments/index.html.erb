@@ -1,0 +1,50 @@
+<% flash.each do |type, msg| %>
+  <% if type == "alert" %>
+      <div class="alert alert-danger text-center">
+  <% else %>
+      <div class="alert alert-success text-center">
+  <% end %>
+  <%= msg %>
+  </div>
+<% end %>
+
+<div class='container'>
+  <div class="d-flex flex-row justify-content-between m-3">
+    <%= link_to "<i class=\"fas fa-calendar-plus mr-3\"></i>Agendar nova consulta".html_safe, new_appointment_path, :method => :get, :class => "btn btn-primary rounded-lg btn-lg px-5" %>
+  </div>
+
+  <h2>
+    Consultas agendadas:
+  </h2>
+    <table class="table">
+      <thead >
+        <tr>
+          <th></th>
+          <th>Paciente</th>
+          <th>Médico</th>
+          <th>Horário</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @appointments.each do |doctor| %>
+          <tr>
+            <td>
+              <%= link_to "<i class=\"far fa-edit\"></i>".html_safe, appointment, method: :get, :class => "text-primary mr-1" %>
+              <%= link_to "<i class=\"fas fa-trash-alt\"></i>".html_safe, appointment, method: :delete, :class => "text-danger ml-1" %>
+            </td>
+            <td>
+              <%= appointment.patient.name %>
+            </td>
+            <td>
+              <%= appointment.doctor.name %>
+            </td>
+            <td>
+              <%= appointment.starts_at %>
+            </td>
+          </tr>
+        <% end %>   
+      </tbody>
+    </table>
+
+</div>
