@@ -12,7 +12,7 @@
     <%= form_with scope: :appointment, url: appointments_path, local: true do |form| %>
         <div class="card mt-5">
           <h3 class="card__border p-3">
-            Agendamento de Consulta:
+            Reagendamento de Consulta:
           </h3>
 
           <div class="d-flex p-3">
@@ -64,7 +64,7 @@
             </div>
           </div>
           <div class="d-flex flex-row-reverse p-3">
-            <%= form.submit "Agendar Consulta", :class => "btn btn-primary" %>
+            <%= form.submit "Reagendar Consulta", :class => "btn btn-primary" %>
             <%= link_to "Voltar", appointments_path, :method => :get, :class => "btn mr-3" %>
           </div>
         </div>

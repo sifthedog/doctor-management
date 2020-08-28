@@ -26,6 +26,11 @@ class AppointmentsController < ApplicationController
       redirect_to appointments_path, alert: result.error
     end
   end
+  def show
+    @patients = Patient.all
+    @doctors = Doctor.all
+    @appointment = Appointment.find(params[:id])
+  end
   
   private
 
@@ -33,8 +38,6 @@ class AppointmentsController < ApplicationController
     params.require(:appointment)
       .permit(:starts_at)
       .merge!(
-        "starts_at(4i)": params["starts_at(4i)"], 
-        "starts_at(5i)": params["starts_at(5i)"], 
         doctor_id: params[:doctor_id], 
         patient_id: params[:patient_id]
       )
