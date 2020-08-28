@@ -9,6 +9,7 @@ class ValidateCpf
 
   def invalid_cpf?(cpf)
     (
+      known_invalid_cpfs.include?(cpf) ||
       cpf.size != 11 ||
       !cpf.scan(/\D/).empty? ||
       get_validation_remainder(cpf[0..8]) != cpf[-2].to_i ||
@@ -27,4 +28,12 @@ class ValidateCpf
 
     (sum % 11) < 2 ? 0 : (11 - (sum % 11))
   end
+
+  def known_invalid_cpfs
+    [
+      "00000000000", "11111111111", "22222222222", "33333333333", "44444444444", 
+      "55555555555", "66666666666", "77777777777", "88888888888", "99999999999"
+    ]
+  end
+  
 end
