@@ -17,6 +17,12 @@ class PatientsController < ApplicationController
       redirect_to new_patient_path, alert: result.error
     end
   end
+  def destroy
+    Patient.find(params[:id]).destroy
+
+    redirect_to patients_path, notice: 'Paciente removido com sucesso!'
+  end
+  
   
   private
   def patient_params
