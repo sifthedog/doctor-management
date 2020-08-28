@@ -2,6 +2,7 @@
 
 class Patient < ApplicationRecord
   belongs_to :doctor
+  has_many :appointments, dependent: :destroy
   validates_uniqueness_of :cpf
 
   def get_cpf

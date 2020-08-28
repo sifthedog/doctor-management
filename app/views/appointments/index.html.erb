@@ -27,7 +27,7 @@
       </thead>
       
       <tbody>
-        <% @appointments.each do |doctor| %>
+        <% @appointments.each do |appointment| %>
           <tr>
             <td>
               <%= link_to "<i class=\"far fa-edit\"></i>".html_safe, appointment, method: :get, :class => "text-primary mr-1" %>
@@ -40,7 +40,7 @@
               <%= appointment.doctor.name %>
             </td>
             <td>
-              <%= appointment.starts_at %>
+              <%= appointment.starts_at.to_s[0..-4] %>
             </td>
           </tr>
         <% end %>   

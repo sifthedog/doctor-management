@@ -3,5 +3,8 @@
 class DeleteAppointment
   include Interactor
 
-  def call; end
+  def call
+    appointment = Appointment.find(context.id)
+    appointment.destroy
+  end
 end
