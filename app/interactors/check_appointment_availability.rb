@@ -10,11 +10,13 @@ class CheckAppointmentAvailability
 
     context.fail!(error: 'Você não pode agendar para uma data passada.') if context.starts_at < Time.current
 
-    unless Appointment.find_by(
+    conflicting_appointment = Appointment.find_by(
       starts_at: context.starts_at,
       doctor_id: context.doctor_id,
       patient_id: context.patient_id
-    ).nil?
+    )
+
+    if !conflicting_appointment.nil? && conflicting_appointment[:id] != context.appointment_id
       context.fail!(error: 'Já existe uma consulta para este horário')
     end
   end

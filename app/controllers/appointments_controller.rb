@@ -38,8 +38,13 @@ class AppointmentsController < ApplicationController
 
   def update
     result = UpdateAppointment.call(appointments_params: appointments_params, id: params[:id])
+
+    if result.success?
+      redirect_to appointments_path, notice: 'Consulta reagendada com sucesso!'
+    else
+      redirect_to appointments_path, alert: result.error
+    end
   end
-  
 
   private
 
@@ -47,7 +52,6 @@ class AppointmentsController < ApplicationController
     params.require(:appointment)
           .permit(:starts_at)
           .merge!(
-            doctor_id: params[:doctor_id],
             patient_id: params[:patient_id]
           )
   end

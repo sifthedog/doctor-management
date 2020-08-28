@@ -9,26 +9,13 @@
 <% end %>
 
 <div class='container'>
-    <%= form_with scope: :appointment, url: appointments_path, local: true do |form| %>
+    <%= form_with scope: :appointment, url: appointment_path, method: 'put', local: true do |form| %>
         <div class="card mt-5">
           <h3 class="card__border p-3">
             Reagendamento de Consulta:
           </h3>
 
           <div class="d-flex p-3">
-            <div class="input-group">
-              <div class="input-group-prepend flex-fill mr-2">
-                <span class="input-group-text" id="basic-addon1">Médico:</span>
-                <%= select_tag(
-                    'doctor_id', 
-                    options_for_select(
-                      @doctors.map {|doctor| [doctor.name, doctor.id]}
-                    ), 
-                    class: "form-control"
-                  ) 
-                %>
-              </div>
-            </div>
             <div class="input-group">
               <div class="input-group-prepend flex-fill">
                 <span class="input-group-text" id="basic-addon1">Paciente:</span>
