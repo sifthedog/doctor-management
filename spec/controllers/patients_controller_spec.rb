@@ -4,7 +4,7 @@ RSpec.describe PatientsController, type: :controller do
   describe "GET create" do
     before do
       allow(CreatePatient).to receive(:call) do
-        double("Interactor::Context", success?: success, patient: patient, error: '')
+        double("Interactor::Context", success?: success, patient: patient, error: 'Erro')
       end
 
       post :create, params: {patient: patient_attributes, doctor_id: 1}
